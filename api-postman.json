@@ -1,0 +1,377 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Simple SHop",
+    "dateExported": "2024-02-03T07:08:55.996Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "24f8fdfb-5062-4333-be62-9e11e4801164",
+            "name": "user",
+            "containerId": "",
+            "created": "2024-01-29T07:54:19.761Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "pesanan",
+            "containerId": "",
+            "created": "2024-01-29T08:09:27.747Z",
+            "sortNum": 30000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "df722b85-e99d-4e52-a37c-99e8a872742b",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "Pesan",
+            "url": "https://simple-shop.app/api/v1/order/detail",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-01-29T08:19:13.729Z",
+            "modified": "2024-01-29T18:20:53.856Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":\"1\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "fd8d217c-bb13-46f5-af73-cce1ed808cc4",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "store",
+            "url": "https://simple-shop.app/api/v1/order/store",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2024-01-29T19:21:05.694Z",
+            "modified": "2024-01-29T19:41:48.112Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"items\": [\n    {\n      \"barang_id\": 4,\n      \"jumlah\": 2\n    },\n    {\n      \"barang_id\": 8,\n      \"jumlah\": 3\n    }\n  ],\n  \"jumlah_harga\": 600000,\n  \"jumlah_barang\": 5,\n  \"user_id\": 1\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "306b9ae0-02a8-47d2-92a3-30363ad5ba90",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "",
+            "name": "barang",
+            "url": "https://simple-shop.app/api/v1/barang",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-01-29T07:00:26.494Z",
+            "modified": "2024-01-29T17:35:05.113Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "67a744e1-e387-436e-8dff-c9e4249a5809",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "check_out",
+            "url": "https://simple-shop.app/api/v1/profil/1",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-01-29T08:19:19.617Z",
+            "modified": "2024-01-29T08:19:19.617Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "910bf434-5880-40c7-adba-e8799beb098f",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "delete",
+            "url": "https://simple-shop.app/api/v1/profil/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-01-29T08:20:13.434Z",
+            "modified": "2024-01-29T08:20:13.434Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "24c40355-1e99-40f9-9b83-babe45f2d52d",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "24f8fdfb-5062-4333-be62-9e11e4801164",
+            "name": "profil",
+            "url": "https://simple-shop.app/api/v1/user/profil/1",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-29T07:54:30.690Z",
+            "modified": "2024-01-29T17:37:19.032Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "44466d9d-3dc1-4ee6-9e8b-4338a608a48d",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "konfirmasi",
+            "url": "https://simple-shop.app/api/v1/profil/1",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-01-29T08:20:34.050Z",
+            "modified": "2024-01-29T08:20:34.050Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "f8f401f3-830d-4fdf-86a4-af14014259ba",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "24f8fdfb-5062-4333-be62-9e11e4801164",
+            "name": "Update",
+            "url": "https://simple-shop.app/api/v1/user/update",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-01-29T07:56:39.252Z",
+            "modified": "2024-01-29T18:10:26.022Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\":\"1\",\n  \"name\":\"a\",\n  \"email\":\"a@a.com\",\n  \"nohp\":\"0813\",\n  \"alamat\":\"Bekasi\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "7a5cb550-1626-4c47-ad97-7c6230de8d63",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "list_pesanan",
+            "url": "https://simple-shop.app/api/v1/order/detail",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2024-01-29T08:20:54.370Z",
+            "modified": "2024-01-29T19:49:50.009Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb27f4b4-df31-499c-ad45-5869837f6d6b",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "24f8fdfb-5062-4333-be62-9e11e4801164",
+            "name": "login",
+            "url": "https://simple-shop.app/api/v1/user/login",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-01-29T07:42:49.149Z",
+            "modified": "2024-01-29T07:45:30.164Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"a@a.com\",\n  \"password\":\"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a66fbdc9-daf1-4f7e-8e10-71f8a0c89914",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "1cb35a38-5a28-43ac-b9b0-188499e3746a",
+            "name": "detail_pesanan",
+            "url": "https://simple-shop.app/api/v1/profil/1",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-01-29T08:21:05.174Z",
+            "modified": "2024-01-29T08:21:05.174Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "1|cVDKJijjo9pODXAbvrDFZcA8S3lSFNmF00GGzjJ16e42bc4b"
+            },
+            "tests": []
+        },
+        {
+            "_id": "d68cf2b6-01a7-4cc7-b145-d3a82a6d6e59",
+            "colId": "6f2bf08b-a4bd-4d45-9f54-77574f819083",
+            "containerId": "24f8fdfb-5062-4333-be62-9e11e4801164",
+            "name": "Register",
+            "url": "https://simple-shop.app/api/v1/user/register",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2024-01-29T07:45:41.439Z",
+            "modified": "2024-01-29T07:50:18.855Z",
+            "headers": [
+                {
+                    "name": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "name": "User-Agent",
+                    "value": "Thunder Client (https://www.thunderclient.com)",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"a\",\n  \"email\":\"d@a.com\",\n  \"password\":\"12345678\",\n  \"c_password\":\"12345678\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
