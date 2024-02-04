@@ -12,4 +12,17 @@ class Barang extends Model
 	{
 	     return $this->hasMany('App\Models\PesananDetail','barang_id', 'id');
 	}
+
+	protected $fillable = [
+        'nama_barang',
+        'harga',
+        'stok',
+        'keterangan',
+        'gambar',
+        'gambar2',
+    ];
+
+    protected $casts = [
+        'gambar2' => 'array',
+    ];
 }

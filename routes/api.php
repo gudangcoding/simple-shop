@@ -35,8 +35,7 @@ Route::group(['prefix' => '/order', 'middleware' => ['auth:sanctum']], function 
     Route::get('/konfirmasi', [PesananController::class, 'konfirmasi']);
     Route::get('/listpesanan', [PesananController::class, 'list_pesanan']);
     Route::get('/detail/{id}', [PesananController::class, 'detail_pesanan']);
+    Route::get('/bayar', [PesananController::class, 'store']);
+    Route::get('/andle', [PesananController::class, 'handle']);
+    Route::get('/status', [PesananController::class, 'status']);
 });
-
-Route::get('/order/bayar', [PesananController::class, 'store']);
-Route::get('/order/handle', [PesananController::class, 'handle']);
-Route::get('/order/status', [PesananController::class, 'status']);

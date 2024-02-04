@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->integer('harga');
             $table->integer('stok');
+            $table->text('keterangan');
             $table->string('gambar');
-            $table->string('keterangan');
+            $table->json('gambar2')->nullable();
             $table->timestamps();
         });
     }
