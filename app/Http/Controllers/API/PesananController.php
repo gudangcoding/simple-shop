@@ -123,6 +123,8 @@ class PesananController extends Controller
 
     public function handle(Request $request)
     {
+        //url testing
+        //https://simulator.sandbox.midtrans.com/
         //ini akan di kirim dari midtrans
         $notif = new \Midtrans\Notification();
 
