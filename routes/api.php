@@ -36,7 +36,7 @@ Route::group(['prefix' => '/order', 'middleware' => ['auth:sanctum']], function 
     Route::post('/store', [PesananController::class, 'store']);
     Route::get('/checkout', [PesananController::class, 'check_out']);
     Route::get('/konfirmasi', [PesananController::class, 'konfirmasi']);
-    Route::get('/listpesanan', [PesananController::class, 'list_pesanan']);
+    Route::get('/listpesanan/{id}', [PesananController::class, 'history']);
     Route::get('/detail/{id}', [PesananController::class, 'detail_pesanan']);
     Route::get('/bayar', [PesananController::class, 'store']);
     Route::get('/andle', [PesananController::class, 'handle']);

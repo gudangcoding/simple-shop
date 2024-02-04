@@ -33,8 +33,9 @@ class PesananController extends Controller
     }
     public function history(Request $request)
     {
+        
         $orders = Pesanan::with('user')
-            ->where('status', 1)
+            ->where('status', 0)
             ->orderBy('created_at', 'desc')
             ->where('pesanans.user_id', $request->id)
             ->paginate(10);
