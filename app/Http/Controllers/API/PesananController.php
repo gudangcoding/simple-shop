@@ -85,7 +85,7 @@ class PesananController extends Controller
             )
         );
 
-        // $snapToken = \Midtrans\Snap::getSnapToken($params);
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
         // return response()->json($snapToken);
 
 
@@ -110,6 +110,7 @@ class PesananController extends Controller
 
         $pesanan = Pesanan::find($order->id);
         $pesanan->url_bayar = $paymentUrl;
+        $pesanan->token_midtrans = $snapToken;
         $pesanan->update();
 
         // //response
@@ -129,30 +130,27 @@ class PesananController extends Controller
         $fraud = $notif->fraud_status;
         return response()->json($notif);
 
+        $pesanan = Pesanan::find($notif->order_id);
 
         error_log("Order ID $notif->order_id: " . "transaction status = $transaction, fraud staus = $fraud");
 
         if ($transaction == 'capture') {
             if ($fraud == 'challenge') {
-                // TODO Set payment status in merchant's database to 'challenge'
+                $pesanan->status =  $transaction;
             } else if ($fraud == 'accept') {
-                $pesanan = Pesanan::find($notif->order_id);
-                $pesanan->status = 'success';
-                $pesanan->update();
+                $pesanan->status = $transaction;
             }
         } else if ($transaction == 'cancel') {
             if ($fraud == 'challenge') {
-                // TODO Set payment status in merchant's database to 'failure'
+                $pesanan->status =  $transaction;
             } else if ($fraud == 'accept') {
-                $pesanan = Pesanan::find($notif->order_id);
-                $pesanan->status = 'batal';
-                $pesanan->update();
+                $pesanan->status =  $transaction;
             }
         } else if ($transaction == 'deny') {
-            $pesanan = Pesanan::find($notif->order_id);
-                $pesanan->status = 'gagal';
-                $pesanan->update();
+                $pesanan->status =  $transaction;
         }
+
+        $pesanan->update();
     }
 
     function status(Request $request)
