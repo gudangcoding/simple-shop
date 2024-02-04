@@ -72,7 +72,7 @@ class PesananController extends Controller
         $order = Pesanan::create([
             'user_id' => $request->user_id,
             'tanggal' => $tanggal,
-            'jumlah_barang' => $request->jumlah_barang,
+            'jumlah_barang' => $request->qty,
             'jumlah_harga' => $request->jumlah_harga,
             'kode' => mt_rand(100, 999),
             'status' => 0,
@@ -95,6 +95,7 @@ class PesananController extends Controller
             PesananDetail::create([
                 'pesanan_id' => $order->id,
                 'barang_id' => $item['id'],
+                'harga' => $item['quantity']*$item['price'],
                 'jumlah' => $item['quantity'],
             ]);
         }

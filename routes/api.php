@@ -14,11 +14,14 @@ Route::post('/user/register', [UserController::class, 'register']);
 Route::post('/user/login', [UserController::class, 'login']);
 Route::get('/user/aktifasi', [UserController::class, 'aktifasi']);
 Route::get('/user/reset', [UserController::class, 'reset']);
+Route::post('/user/uploadfoto', [UserController::class, 'uploadfoto']);
 
 
 //Barang   
 Route::get('/barang', [BarangController::class, 'index']);
-// Route::get('/barang', [BarangController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/barang/detail/{id}', [BarangController::class, 'detail']);
+Route::get('/barang/cari', [BarangController::class, 'cari']);
+// Route::get('/barangid', [BarangController::class, 'index'])->middleware('auth:sanctum');
 
 //User group route
 Route::group(['prefix' => '/user', 'middleware' => ['auth:sanctum']], function () {

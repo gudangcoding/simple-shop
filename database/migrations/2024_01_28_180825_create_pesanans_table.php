@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('status');
             $table->integer('kode');
             $table->integer('jumlah_harga');
-            $table->string('token_midtrans');
-            $table->string('url_bayar');
-            $table->string('bukti_bayar');
-            $table->string('catatan');
+            $table->integer('jumlah_barang')->nullable();
+            $table->string('token_midtrans')->nullable();
+            $table->string('url_bayar')->nullable();
+            $table->string('bukti_bayar')->nullable();
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }

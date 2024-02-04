@@ -17,4 +17,25 @@ class BarangController extends Controller
             'data'=>$barangs
         ],201);
     }
+
+    public function detail($id)
+    {
+        $barangs = Barang::find($id);
+        
+        return response()->json([
+            'success'=>true,
+            'data'=>$barangs
+        ],201);
+    }
+    public function cari(Request $request)
+    {
+        $keyword = $request->q;
+        // Lakukan pencarian di tabel 'barangs' berdasarkan nama_barang
+        $barangs = Barang::where('nama_barang', 'like', "%$keyword%")->get();
+        
+        return response()->json([
+            'success'=>true,
+            'data'=>$barangs
+        ],201);
+    }
 }
