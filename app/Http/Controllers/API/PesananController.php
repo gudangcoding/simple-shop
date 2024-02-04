@@ -71,8 +71,8 @@ class PesananController extends Controller
            
             PesananDetail::create([
                 'pesanan_id' => $order->id,
-                'barang_id' => $item['barang_id'],
-                'jumlah' => $item['jumlah'],
+                'barang_id' => $item['id'],
+                'jumlah' => $item['quantity'],
             ]);
         }
 
