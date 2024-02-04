@@ -9,7 +9,13 @@ use App\Models\Pesanan;
 use App\Models\User;
 use App\Models\PesananDetail;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Facades\DB;
+
+use Midtrans\Config;
+use Midtrans\Snap;
+
+
 
 class PesananController extends Controller
 {
@@ -54,7 +60,13 @@ class PesananController extends Controller
     public function store(Request $request)
     {
 
-        
+        // Set konfigurasi Midtrans
+        Config::$clientKey = config('midtrans.clientKey'); //untuk core api
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = false;
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+
         $tanggal = Carbon::now();
         // //create order
         $order = Pesanan::create([
@@ -66,9 +78,20 @@ class PesananController extends Controller
             'status' => 0,
         ]);
 
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $order->id,
+                'gross_amount' => $request->jumlah_harga,
+            )
+        );
+
+        // $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // return response()->json($snapToken);
+       
+
         // //create order item
         foreach ($request->items as $item) {
-           
+
             PesananDetail::create([
                 'pesanan_id' => $order->id,
                 'barang_id' => $item['id'],
@@ -76,11 +99,51 @@ class PesananController extends Controller
             ]);
         }
 
+        try {
+            // Get Snap Payment Page URL
+            $paymentUrl = \Midtrans\Snap::createTransaction($params)->redirect_url;
+            // return response()->json($paymentUrl);
+            header('Location: ' . $paymentUrl);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        $pesanan = Pesanan::find($order->id);
+        $pesanan->url_bayar = $paymentUrl;
+        $pesanan->update();
+
         // //response
         return response()->json([
             'success' => true,
+            'url' => $paymentUrl,
             'message' => 'Order Created',
         ], 201);
+    }
+
+    public function handle(Request $request)
+    {
+        $notif = new \Midtrans\Notification();
+
+        $transaction = $notif->transaction_status;
+        $fraud = $notif->fraud_status;
+
+        error_log("Order ID $notif->order_id: " . "transaction status = $transaction, fraud staus = $fraud");
+
+        if ($transaction == 'capture') {
+            if ($fraud == 'challenge') {
+                // TODO Set payment status in merchant's database to 'challenge'
+            } else if ($fraud == 'accept') {
+                // TODO Set payment status in merchant's database to 'success'
+            }
+        } else if ($transaction == 'cancel') {
+            if ($fraud == 'challenge') {
+                // TODO Set payment status in merchant's database to 'failure'
+            } else if ($fraud == 'accept') {
+                // TODO Set payment status in merchant's database to 'failure'
+            }
+        } else if ($transaction == 'deny') {
+            // TODO Set payment status in merchant's database to 'failure'
+        }
     }
 
     public function check_out(Request $request)

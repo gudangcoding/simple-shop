@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::post('/user/register', [UserController::class, 'register']);
 Route::post('/user/login', [UserController::class, 'login']);
 Route::get('/user/aktifasi', [UserController::class, 'aktifasi']);
@@ -35,3 +36,6 @@ Route::group(['prefix' => '/order', 'middleware' => ['auth:sanctum']], function 
     Route::get('/listpesanan', [PesananController::class, 'list_pesanan']);
     Route::get('/detail/{id}', [PesananController::class, 'detail_pesanan']);
 });
+
+Route::get('/order/bayar', [PesananController::class, 'store']);
+Route::get('/order/handle', [PesananController::class, 'handle']);
