@@ -87,7 +87,7 @@ class PesananController extends Controller
 
         // $snapToken = \Midtrans\Snap::getSnapToken($params);
         // return response()->json($snapToken);
-       
+
 
         // //create order item
         foreach ($request->items as $item) {
@@ -122,10 +122,13 @@ class PesananController extends Controller
 
     public function handle(Request $request)
     {
+        //ini akan di kirim dari midtrans
         $notif = new \Midtrans\Notification();
 
         $transaction = $notif->transaction_status;
         $fraud = $notif->fraud_status;
+        return response()->json($notif);
+
 
         error_log("Order ID $notif->order_id: " . "transaction status = $transaction, fraud staus = $fraud");
 
@@ -133,17 +136,32 @@ class PesananController extends Controller
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'challenge'
             } else if ($fraud == 'accept') {
-                // TODO Set payment status in merchant's database to 'success'
+                $pesanan = Pesanan::find($notif->order_id);
+                $pesanan->status = 'success';
+                $pesanan->update();
             }
         } else if ($transaction == 'cancel') {
             if ($fraud == 'challenge') {
                 // TODO Set payment status in merchant's database to 'failure'
             } else if ($fraud == 'accept') {
-                // TODO Set payment status in merchant's database to 'failure'
+                $pesanan = Pesanan::find($notif->order_id);
+                $pesanan->status = 'batal';
+                $pesanan->update();
             }
         } else if ($transaction == 'deny') {
-            // TODO Set payment status in merchant's database to 'failure'
+            $pesanan = Pesanan::find($notif->order_id);
+                $pesanan->status = 'gagal';
+                $pesanan->update();
         }
+    }
+
+    function status(Request $request)
+    {
+        $status = \Midtrans\Transaction::status($request->order_id);
+        return response()->json([
+            'success' => true,
+            'data' => $status
+        ], 201);
     }
 
     public function check_out(Request $request)

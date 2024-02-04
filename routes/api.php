@@ -39,3 +39,4 @@ Route::group(['prefix' => '/order', 'middleware' => ['auth:sanctum']], function 
 
 Route::get('/order/bayar', [PesananController::class, 'store']);
 Route::get('/order/handle', [PesananController::class, 'handle']);
+Route::get('/order/status', [PesananController::class, 'status']);
