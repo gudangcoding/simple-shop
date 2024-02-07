@@ -24,21 +24,23 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-       
+
         $this->validate($request, [
             'password'  => 'confirmed',
         ]);
-
+        
+        $password_baru = Hash::make($request->password_baru);
         $user = User::where('id', $request->id)->first();
+
+        if (!empty($request->password)) {
+            $user->password = Hash::make($request->password_lama);
+        }
         $user->name = $request->name;
         $user->email = $request->email;
         $user->nohp = $request->nohp;
+        $user->foto = $request->foto;
         $user->alamat = $request->alamat;
-
-        if (!empty($request->password)) {
-            $user->password = Hash::make($request->password);
-        }
-        
+        $user->password = $password_baru;
         $user->update();
 
         return response()->json([
@@ -63,13 +65,6 @@ class UserController extends Controller
         $user = User::create($input);
         $success =  $user;
         $success['token'] =  $user->createToken('MyApp', ['user'])->plainTextToken;
-        //kirim email jika sudah sukses daftar atur di app\helpers\Kirimemail.php
-        //jangan lupa tambahkan di composer.json
-        //lalu cmd composer dump-autoload
-        // "files": [
-        //     "app/Helpers/KirimEmail.php"
-        // ],
-        // kirim_email($request->email, $request->name, "Pendaftaran Toko Online", "aktifkan pendaftaran anda disini<a href='https://tokokamu.com/user/aktifasi/".$user->id."'>Aktifasi Akun</a>", "");
         if ($success) {
             return response()->json([
                 'success' => true,
@@ -109,7 +104,7 @@ class UserController extends Controller
 
         if (Auth::guard()->attempt(['email' => $request->email, 'password' => $request->password])) {
 
-            $user = User::select('id', 'name', 'email')->find(auth()->guard()->user()->id);
+            $user = User::select('id', 'name', 'email', 'alamat', 'nohp', 'foto')->find(auth()->guard()->user()->id);
             $success =  $user;
             $success['token'] =  $user->createToken('MyApp', ['user'])->plainTextToken;
 
@@ -135,21 +130,22 @@ class UserController extends Controller
         ]);
     }
 
-   function uploadfoto(Request $request)  {
-    $user = User::find($request->id);
-    $base64Image = $request->image;
-    if ($base64Image) {
-        $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
-        $filename = 'foto_' . time() . '.jpg'; 
-        Storage::put('public/foto/' . $filename, $image);
-        $imageUrl = asset('storage/foto/' . $filename);
-        $user->foto = $imageUrl;
-    }
-    $user->update();
+    function uploadfoto(Request $request)
+    {
+        $user = User::find($request->id);
+        $base64Image = $request->image;
+        if ($base64Image) {
+            $image = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $base64Image));
+            $filename = 'foto_' . time() . '.jpg';
+            Storage::put('public/foto/' . $filename, $image);
+            $imageUrl = asset('storage/foto/' . $filename);
+            $user->foto = $imageUrl;
+        }
+        $user->update();
 
-    return response()->json([
-        'success' => true,
-        'data' => $user
-    ], 201);
-   } 
+        return response()->json([
+            'success' => true,
+            'data' => $user
+        ], 201);
+    }
 }

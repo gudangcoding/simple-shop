@@ -25,7 +25,7 @@ Route::get('/barang/cari', [BarangController::class, 'cari']);
 
 //User group route
 Route::group(['prefix' => '/user', 'middleware' => ['auth:sanctum']], function () {
-    Route::post('/logout', [ProfilController::class, 'logout']);
+    Route::get('/logout', [ProfilController::class, 'logout']);
     Route::get('/profil/{id}', [ProfilController::class, 'index']);
     Route::post('/update', [ProfilController::class, 'update']);
 });
