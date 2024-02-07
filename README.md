@@ -1,5 +1,5 @@
 Aplikasi mobilenya ada di sini <br>
-<a href='https://github.com/gudangcoding/myapp'> Myapp</a><br>
+<a href='https://github.com/gudangcoding/myapp'> Mobile apps</a><br>
 cara install <br>
 <ol>
 <li>Download atau klon project kemudian ekstrak di xampp atau laragon</li>
